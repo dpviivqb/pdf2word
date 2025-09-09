@@ -1,0 +1,11 @@
+[project]
+name = "pdf2word"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pdf2docx>=0.5.8",
+    "pypdf2>=3.0.1",
+    "python-docx>=1.2.0",
+]
