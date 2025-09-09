@@ -13,8 +13,9 @@ A Python-based PDF to Word document conversion tool built with uv virtual enviro
 - ⚡ Fast processing of multi-page documents
 - 🚀 **Batch conversion support** - Process multiple PDF files at once
 - 🧵 **Multi-threading processing** - Accelerate batch conversions
-- 📁 **Pre-configured folders** - Simple file management
+- 📁 **Flexible file handling** - Support for relative and absolute paths
 - 🕒 **Smart duplicate handling** - Auto timestamp to avoid file overwriting
+- 📂 **Multiple input methods** - Support for single files, directories, and wildcard patterns
 
 ## Requirements
 
@@ -48,14 +49,30 @@ uv run -m pdf2word
 # Convert specified single file (files not in input folder)
 uv run -m pdf2word your_file.pdf
 
+# Convert specified single file (absolute path)
+uv run -m pdf2word "/Users/username/Documents/document.pdf"
+
 # Convert single file with specified output location
 uv run -m pdf2word your_file.pdf -o output_filename.docx
+
+# Convert file to specified absolute path
+uv run -m pdf2word document.pdf -o "/Users/username/Desktop/converted.docx"
 
 # Use 8 threads for faster batch conversion (for files in input/ folder)
 uv run -m pdf2word --threads 8
 
 # View help information
 uv run -m pdf2word --help
+```
+
+### Practical Usage Examples
+
+```bash
+# Example 1: Batch convert all PDFs in current directory
+uv run -m pdf2word .
+
+# Example 2: Convert PDFs from specified directory
+uv run -m pdf2word "/path/to/pdf/folder" -o "/path/to/output/folder"
 ```
 
 ### Traditional Method (Optional, for users without uv)

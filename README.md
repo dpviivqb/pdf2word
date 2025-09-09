@@ -13,8 +13,9 @@
 - ⚡ 快速处理多页文档
 - 🚀 **批量转换支持** - 一次处理多个PDF文件
 - 🧵 **多线程处理** - 加速批量转换
-- 📁 **预设文件夹** - 简单的文件管理
+- 📁 **灵活的文件处理** - 支持相对路径和绝对路径
 - 🕒 **智能重名处理** - 自动添加时间戳避免覆盖文件
+- 📂 **多种输入方式** - 支持单文件、目录和通配符模式
 
 ## 环境要求
 
@@ -48,14 +49,30 @@ uv run -m pdf2word
 # 转换指定的单个文件（不在input文件夹中的文件）
 uv run -m pdf2word your_file.pdf
 
+# 转换指定的单个文件（绝对路径）
+uv run -m pdf2word "/Users/username/Documents/document.pdf"
+
 # 转换单个文件并指定输出位置
 uv run -m pdf2word your_file.pdf -o output_filename.docx
+
+# 转换文件到指定绝对路径
+uv run -m pdf2word document.pdf -o "/Users/username/Desktop/converted.docx"
 
 # 使用8个线程加速批量转换（处理input/文件夹中的文件）
 uv run -m pdf2word --threads 8
 
 # 查看帮助信息
 uv run -m pdf2word --help
+```
+
+### 实际使用示例
+
+```bash
+# 示例1：批量转换当前目录下的所有PDF
+uv run -m pdf2word .
+
+# 示例2：转换指定目录的PDF文件
+uv run -m pdf2word "/path/to/pdf/folder" -o "/path/to/output/folder"
 ```
 
 ### 传统方式（可选，适用于没有uv的用户）
@@ -132,6 +149,7 @@ output/
 ## 故障排除
 
 如果遇到转换问题，请检查：
+
 1. PDF文件是否损坏
 2. 是否有足够的磁盘空间
 3. 虚拟环境是否正确激活
