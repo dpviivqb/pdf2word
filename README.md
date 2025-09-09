@@ -57,14 +57,17 @@ uv run main.py --threads 8
 uv run main.py --help
 ```
 
-### 传统方式（可选）
+### 传统方式（可选，适用于没有uv的用户）
 
 ```bash
+# 创建虚拟环境
+python -m venv .venv
+
 # 激活虚拟环境
 source .venv/bin/activate
 
 # 安装依赖
-pip install -r requirements.txt
+pip install pdf2docx python-docx PyPDF2
 
 # 运行程序
 python main.py

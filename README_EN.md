@@ -57,14 +57,17 @@ uv run main.py --threads 8
 uv run main.py --help
 ```
 
-### Traditional Method (Optional)
+### Traditional Method (Optional, for users without uv)
 
 ```bash
+# Create virtual environment
+python -m venv .venv
+
 # Activate virtual environment
 source .venv/bin/activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install pdf2docx python-docx PyPDF2
 
 # Run the program
 python main.py
