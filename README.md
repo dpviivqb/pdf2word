@@ -17,30 +17,46 @@
 
 ## 安装和使用
 
-### 1. 激活虚拟环境
+### 1. 克隆仓库
 ```bash
-source .venv/bin/activate
+git clone https://github.com/dpviivqb/pdf2word.git
+cd pdf2word
 ```
 
-### 2. 基本使用
+### 2. 使用 uv 运行（推荐）
 ```bash
-# 转换PDF文件（输出文件名自动生成）
-python main.py your_file.pdf
+# 直接使用 uv 运行，无需手动管理虚拟环境
+uv run main.py your_file.pdf
 
 # 指定输出文件名
-python main.py your_file.pdf -o output_filename.docx
+uv run main.py your_file.pdf -o output_filename.docx
 
 # 查看帮助信息
-python main.py --help
+uv run main.py --help
 ```
 
-### 3. 示例
+### 3. 传统方式（可选）
 ```bash
-# 将Survey.pdf转换为Survey.docx
-python main.py Survey.pdf
+# 激活虚拟环境
+source .venv/bin/activate
+
+# 安装依赖
+pip install -r requirements.txt
+
+# 运行程序
+python main.py your_file.pdf
+```
+
+### 4. 示例
+```bash
+# 使用 uv 将 Survey.pdf 转换为 Survey.docx
+uv run main.py Survey.pdf
 
 # 转换并指定输出路径
-python main.py Survey.pdf -o /path/to/output/document.docx
+uv run main.py Survey.pdf -o /path/to/output/document.docx
+
+# 转换 Lecture-04.pdf
+uv run main.py Lecture-04.pdf -o Lecture-04.docx
 ```
 
 ## 技术栈
