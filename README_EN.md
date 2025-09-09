@@ -14,6 +14,7 @@ A Python-based PDF to Word document conversion tool built with uv virtual enviro
 - 🚀 **Batch conversion support** - Process multiple PDF files at once
 - 🧵 **Multi-threading processing** - Accelerate batch conversions
 - 📁 **Pre-configured folders** - Simple file management
+- 🕒 **Smart duplicate handling** - Auto timestamp to avoid file overwriting
 
 ## Requirements
 
@@ -103,6 +104,25 @@ This tool uses the pdf2docx library, which can:
 - Convert table structures
 - Retain images and charts
 - Maintain page layout
+
+## Smart Duplicate Handling
+
+When an output file already exists, the program automatically adds a timestamp to avoid overwriting:
+
+- **Timestamp Format**: `YYYYMMDD_HHMMSS`
+- **Example**: `document.docx` → `document_20250909_154908.docx`
+- **Use Cases**:
+  - Multiple conversions of the same PDF file
+  - Avoiding overwrite during batch processing
+  - Preserving conversion history
+
+```bash
+# Example: Multiple conversions generate files with different timestamps
+output/
+├── Survey.docx                    # First conversion
+├── Survey_20250909_154836.docx   # Second conversion
+└── Survey_20250909_154908.docx   # Third conversion
+```
 
 ## Troubleshooting
 
