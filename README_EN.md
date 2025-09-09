@@ -11,6 +11,9 @@ A Python-based PDF to Word document conversion tool built with uv virtual enviro
 - 🖼️ Support for images and tables conversion
 - 💻 Simple command-line interface
 - ⚡ Fast processing of multi-page documents
+- 🚀 **Batch conversion support** - Process multiple PDF files at once
+- 🧵 **Multi-threading processing** - Accelerate batch conversions
+- 📁 **Pre-configured folders** - Simple file management
 
 ## Requirements
 
@@ -19,25 +22,43 @@ A Python-based PDF to Word document conversion tool built with uv virtual enviro
 
 ## Installation and Usage
 
-### 1. Clone the Repository
+### Quick Start (Recommended)
+
+1. **Clone the Repository**
 ```bash
 git clone https://github.com/dpviivqb/pdf2word.git
 cd pdf2word
 ```
 
-### 2. Using uv (Recommended)
+2. **Place PDF Files**
+   - Put your PDF files into the `input/` folder
+
+3. **Run Conversion**
 ```bash
-# Run directly with uv, no need to manually manage virtual environment
+# Batch convert all PDF files in input/ folder
+uv run main.py
+
+# Converted Word documents will be saved in output/ folder
+```
+
+### Other Usage Options
+
+```bash
+# Convert single file
 uv run main.py your_file.pdf
 
-# Specify output filename
+# Convert single file with specified output location
 uv run main.py your_file.pdf -o output_filename.docx
+
+# Use 8 threads for faster batch conversion
+uv run main.py --threads 8
 
 # View help information
 uv run main.py --help
 ```
 
-### 3. Traditional Method (Optional)
+### Traditional Method (Optional)
+
 ```bash
 # Activate virtual environment
 source .venv/bin/activate
@@ -46,22 +67,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # Run the program
-python main.py your_file.pdf
-```
-
-### 4. Examples
-```bash
-# Convert Survey.pdf to Survey.docx using uv
-uv run main.py Survey.pdf
-
-# Convert with specified output path
-uv run main.py Survey.pdf -o /path/to/output/document.docx
-
-# Convert Lecture-04.pdf
-uv run main.py Lecture-04.pdf -o Lecture-04.docx
-
-# Convert SLR_v1.0.pdf
-uv run main.py SLR_v1.0.pdf -o SLR_v1.0.docx
+python main.py
 ```
 
 ## Tech Stack
@@ -73,11 +79,14 @@ uv run main.py SLR_v1.0.pdf -o SLR_v1.0.docx
 
 ## Project Structure
 
-```
+```text
 pdf2word/
+├── input/              # 📁 Place PDF files here for conversion
+├── output/             # 📄 Converted Word documents
 ├── .venv/              # Virtual environment
 ├── main.py             # Main program
 ├── pyproject.toml      # Project configuration
+├── LICENSE             # License file
 ├── README.md           # Documentation (Chinese)
 ├── README_EN.md        # Documentation (English)
 └── .gitignore          # Git ignore rules

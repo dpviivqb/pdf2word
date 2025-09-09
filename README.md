@@ -11,6 +11,9 @@
 - 🖼️ 支持图片和表格转换
 - 💻 简单的命令行界面
 - ⚡ 快速处理多页文档
+- 🚀 **批量转换支持** - 一次处理多个PDF文件
+- 🧵 **多线程处理** - 加速批量转换
+- 📁 **预设文件夹** - 简单的文件管理
 
 ## 环境要求
 
@@ -19,25 +22,43 @@
 
 ## 安装和使用
 
-### 1. 克隆仓库
+### 快速开始 (推荐)
+
+1. **克隆仓库**
 ```bash
 git clone https://github.com/dpviivqb/pdf2word.git
 cd pdf2word
 ```
 
-### 2. 使用 uv 运行（推荐）
+2. **放入PDF文件**
+   - 将需要转换的PDF文件放入 `input/` 文件夹
+
+3. **运行转换**
 ```bash
-# 直接使用 uv 运行，无需手动管理虚拟环境
+# 批量转换 input/ 文件夹中的所有PDF文件
+uv run main.py
+
+# 转换完成的Word文档将保存在 output/ 文件夹中
+```
+
+### 其他使用方式
+
+```bash
+# 转换单个文件
 uv run main.py your_file.pdf
 
-# 指定输出文件名
+# 转换单个文件并指定输出位置
 uv run main.py your_file.pdf -o output_filename.docx
+
+# 使用8个线程加速批量转换
+uv run main.py --threads 8
 
 # 查看帮助信息
 uv run main.py --help
 ```
 
-### 3. 传统方式（可选）
+### 传统方式（可选）
+
 ```bash
 # 激活虚拟环境
 source .venv/bin/activate
@@ -46,19 +67,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # 运行程序
-python main.py your_file.pdf
-```
-
-### 4. 示例
-```bash
-# 使用 uv 将 Survey.pdf 转换为 Survey.docx
-uv run main.py Survey.pdf
-
-# 转换并指定输出路径
-uv run main.py Survey.pdf -o /path/to/output/document.docx
-
-# 转换 Lecture-04.pdf
-uv run main.py Lecture-04.pdf -o Lecture-04.docx
+python main.py
 ```
 
 ## 技术栈
@@ -70,11 +79,14 @@ uv run main.py Lecture-04.pdf -o Lecture-04.docx
 
 ## 项目结构
 
-```
+```text
 pdf2word/
+├── input/              # 📁 放入需要转换的PDF文件
+├── output/             # 📄 转换完成的Word文档
 ├── .venv/              # 虚拟环境
 ├── main.py             # 主程序
 ├── pyproject.toml      # 项目配置
+├── LICENSE             # 许可证文件
 ├── README.md           # 说明文档（中文）
 ├── README_EN.md        # 说明文档（英文）
 └── .gitignore          # Git 忽略规则
