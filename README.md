@@ -37,7 +37,7 @@ cd pdf2word
 3. **运行转换**
 ```bash
 # 批量转换 input/ 文件夹中的所有PDF文件
-uv run main.py
+uv run -m pdf2word
 
 # 转换完成的Word文档将保存在 output/ 文件夹中
 ```
@@ -46,16 +46,16 @@ uv run main.py
 
 ```bash
 # 转换指定的单个文件（不在input文件夹中的文件）
-uv run main.py your_file.pdf
+uv run -m pdf2word your_file.pdf
 
 # 转换单个文件并指定输出位置
-uv run main.py your_file.pdf -o output_filename.docx
+uv run -m pdf2word your_file.pdf -o output_filename.docx
 
 # 使用8个线程加速批量转换（处理input/文件夹中的文件）
-uv run main.py --threads 8
+uv run -m pdf2word --threads 8
 
 # 查看帮助信息
-uv run main.py --help
+uv run -m pdf2word --help
 ```
 
 ### 传统方式（可选，适用于没有uv的用户）
@@ -71,7 +71,7 @@ source .venv/bin/activate
 pip install pdf2docx python-docx PyPDF2
 
 # 运行程序
-python main.py
+python -m pdf2word
 ```
 
 ## 技术栈
@@ -85,15 +85,21 @@ python main.py
 
 ```text
 pdf2word/
-├── input/              # 📁 放入需要转换的PDF文件
-├── output/             # 📄 转换完成的Word文档
-├── .venv/              # 虚拟环境
-├── main.py             # 主程序
-├── pyproject.toml      # 项目配置
-├── LICENSE             # 许可证文件
-├── README.md           # 说明文档（中文）
-├── README_EN.md        # 说明文档（英文）
-└── .gitignore          # Git 忽略规则
+├── src/
+│   └── pdf2word/           # 📦 核心代码包
+│       ├── __init__.py     # 包初始化文件
+│       ├── __main__.py     # 模块入口点
+│       ├── main.py         # 主程序逻辑
+│       ├── converter.py    # PDF转换核心功能
+│       └── utils.py        # 工具函数
+├── input/                  # 📁 放入需要转换的PDF文件
+├── output/                 # 📄 转换完成的Word文档
+├── .venv/                  # 虚拟环境
+├── pyproject.toml          # 项目配置
+├── LICENSE                 # 许可证文件
+├── README.md               # 说明文档（中文）
+├── README_EN.md            # 说明文档（英文）
+└── .gitignore              # Git 忽略规则
 ```
 
 ## 转换质量说明

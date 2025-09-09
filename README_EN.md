@@ -37,7 +37,7 @@ cd pdf2word
 3. **Run Conversion**
 ```bash
 # Batch convert all PDF files in input/ folder
-uv run main.py
+uv run -m pdf2word
 
 # Converted Word documents will be saved in output/ folder
 ```
@@ -46,16 +46,16 @@ uv run main.py
 
 ```bash
 # Convert specified single file (files not in input folder)
-uv run main.py your_file.pdf
+uv run -m pdf2word your_file.pdf
 
 # Convert single file with specified output location
-uv run main.py your_file.pdf -o output_filename.docx
+uv run -m pdf2word your_file.pdf -o output_filename.docx
 
 # Use 8 threads for faster batch conversion (for files in input/ folder)
-uv run main.py --threads 8
+uv run -m pdf2word --threads 8
 
 # View help information
-uv run main.py --help
+uv run -m pdf2word --help
 ```
 
 ### Traditional Method (Optional, for users without uv)
@@ -71,7 +71,7 @@ source .venv/bin/activate
 pip install pdf2docx python-docx PyPDF2
 
 # Run the program
-python main.py
+python -m pdf2word
 ```
 
 ## Tech Stack
@@ -85,15 +85,21 @@ python main.py
 
 ```text
 pdf2word/
-├── input/              # 📁 Place PDF files here for conversion
-├── output/             # 📄 Converted Word documents
-├── .venv/              # Virtual environment
-├── main.py             # Main program
-├── pyproject.toml      # Project configuration
-├── LICENSE             # License file
-├── README.md           # Documentation (Chinese)
-├── README_EN.md        # Documentation (English)
-└── .gitignore          # Git ignore rules
+├── src/
+│   └── pdf2word/           # 📦 Core code package
+│       ├── __init__.py     # Package initialization
+│       ├── __main__.py     # Module entry point
+│       ├── main.py         # Main program logic
+│       ├── converter.py    # PDF conversion core functionality
+│       └── utils.py        # Utility functions
+├── input/                  # 📁 Place PDF files here for conversion
+├── output/                 # 📄 Converted Word documents
+├── .venv/                  # Virtual environment
+├── pyproject.toml          # Project configuration
+├── LICENSE                 # License file
+├── README.md               # Documentation (Chinese)
+├── README_EN.md            # Documentation (English)
+└── .gitignore              # Git ignore rules
 ```
 
 ## Conversion Quality
