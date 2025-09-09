@@ -217,14 +217,21 @@ Examples:
             print("   uv run main.py your_file.pdf")
             return 1
         
-        if len(pdf_files) == 1:
-            # Single file conversion
+        if len(pdf_files) == 1 and os.path.isfile(args.input):
+            # Single file conversion (only when user specified a file directly)
             print(f"📄 Converting single file: {pdf_files[0]}")
-            output_file = pdf_to_word(pdf_files[0], args.output)
+            
+            # For single file, if output is a directory, generate filename
+            if os.path.isdir(args.output) or args.output == 'output/':
+                output_file_path = os.path.join(args.output, Path(pdf_files[0]).with_suffix('.docx').name)
+            else:
+                output_file_path = args.output
+                
+            output_file = pdf_to_word(pdf_files[0], output_file_path)
             print(f"✅ Successfully converted to: {output_file}")
             return 0
         else:
-            # Batch conversion
+            # Batch conversion (including single file found in directory)
             print(f"🚀 Starting batch conversion...")
             print(f"📁 Input: {args.input}")
             print(f"📁 Output: {args.output}")
