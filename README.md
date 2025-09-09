@@ -44,13 +44,13 @@ uv run main.py
 ### 其他使用方式
 
 ```bash
-# 转换单个文件
+# 转换指定的单个文件（不在input文件夹中的文件）
 uv run main.py your_file.pdf
 
 # 转换单个文件并指定输出位置
 uv run main.py your_file.pdf -o output_filename.docx
 
-# 使用8个线程加速批量转换
+# 使用8个线程加速批量转换（处理input/文件夹中的文件）
 uv run main.py --threads 8
 
 # 查看帮助信息

@@ -44,13 +44,13 @@ uv run main.py
 ### Other Usage Options
 
 ```bash
-# Convert single file
+# Convert specified single file (files not in input folder)
 uv run main.py your_file.pdf
 
 # Convert single file with specified output location
 uv run main.py your_file.pdf -o output_filename.docx
 
-# Use 8 threads for faster batch conversion
+# Use 8 threads for faster batch conversion (for files in input/ folder)
 uv run main.py --threads 8
 
 # View help information
