@@ -1,5 +1,7 @@
 # PDF2Word - PDF转Word文档工具
 
+*[English Version / 英文版本](README_EN.md)*
+
 这是一个使用Python和uv虚拟环境开发的PDF转Word文档转换工具。
 
 ## 功能特性
@@ -72,10 +74,10 @@ uv run main.py Lecture-04.pdf -o Lecture-04.docx
 pdf2word/
 ├── .venv/              # 虚拟环境
 ├── main.py             # 主程序
-├── Survey.pdf          # 示例PDF文件
-├── Survey.docx         # 转换后的Word文档
 ├── pyproject.toml      # 项目配置
-└── README.md           # 说明文档
+├── README.md           # 说明文档（中文）
+├── README_EN.md        # 说明文档（英文）
+└── .gitignore          # Git 忽略规则
 ```
 
 ## 转换质量说明
@@ -96,3 +98,7 @@ pdf2word/
 ## 许可证
 
 MIT License
+
+---
+
+*[English Version / 英文版本](README_EN.md)*
