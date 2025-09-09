@@ -6,6 +6,30 @@ import argparse
 import glob
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
+from datetime import datetime
+
+
+def generate_unique_filename(output_path: str) -> str:
+    """
+    Generate a unique filename by adding timestamp if file already exists
+    
+    Args:
+        output_path (str): Desired output file path
+        
+    Returns:
+        str: Unique file path with timestamp if needed
+    """
+    if not os.path.exists(output_path):
+        return output_path
+    
+    # File exists, add timestamp
+    path_obj = Path(output_path)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    new_name = f"{path_obj.stem}_{timestamp}{path_obj.suffix}"
+    new_path = path_obj.parent / new_name
+    
+    print(f"⚠️ File already exists, adding timestamp: {new_name}")
+    return str(new_path)
 
 
 def pdf_to_word(pdf_path: str, output_path: str = None) -> str:
@@ -30,6 +54,9 @@ def pdf_to_word(pdf_path: str, output_path: str = None) -> str:
     if output_path is None:
         pdf_file = Path(pdf_path)
         output_path = pdf_file.with_suffix('.docx')
+    
+    # Generate unique filename to avoid overwriting existing files
+    output_path = generate_unique_filename(output_path)
     
     # Ensure output directory exists
     output_dir = Path(output_path).parent
