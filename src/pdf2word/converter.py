@@ -11,13 +11,15 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from .utils import generate_unique_filename
 
 
-def pdf_to_word(pdf_path: str, output_path: str = None) -> str:
+def pdf_to_word(pdf_path: str, output_path: str = None, start_page: int = None, end_page: int = None) -> str:
     """
     Convert PDF file to Word document
     
     Args:
         pdf_path (str): Path to the input PDF file
         output_path (str): Path for the output Word file (optional)
+        start_page (int): Start page number (0-based index, optional)
+        end_page (int): End page number (0-based index, optional)
     
     Returns:
         str: Path to the converted Word file
@@ -45,7 +47,19 @@ def pdf_to_word(pdf_path: str, output_path: str = None) -> str:
         # Convert PDF to Word
         print(f"🔄 Converting {Path(pdf_path).name} to {Path(output_path).name}...")
         cv = Converter(pdf_path)
-        cv.convert(output_path, start=0, end=None)
+        
+        # If page range is specified, show it in the output
+        if start_page is not None or end_page is not None:
+            start = start_page if start_page is not None else 0
+            end = end_page if end_page is not None else None
+            # Display 1-based page numbers for user clarity
+            display_start = start + 1
+            display_end = end if end is None else end
+            print(f"   📖 Converting pages {display_start} to {display_end if display_end else 'end'}")
+            cv.convert(output_path, start=start, end=end)
+        else:
+            cv.convert(output_path, start=0, end=None)
+        
         cv.close()
         print(f"✅ Conversion completed: {Path(output_path).name}")
         return str(output_path)

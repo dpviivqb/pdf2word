@@ -38,6 +38,10 @@ Examples:
                        help='Output file path (for single file) or output directory (default: output/)')
     parser.add_argument('--threads', type=int, default=4, 
                        help='Number of threads for batch processing (default: 4)')
+    parser.add_argument('--start-page', type=int, default=None,
+                       help='Start page number (0-based index, optional)')
+    parser.add_argument('--end-page', type=int, default=None,
+                       help='End page number (0-based index, optional)')
     parser.add_argument('--version', action='version', version='PDF2Word 2.0.0')
     
     args = parser.parse_args()
@@ -75,8 +79,11 @@ Examples:
                 output_file_path = os.path.join(args.output, Path(pdf_files[0]).with_suffix('.docx').name)
             else:
                 output_file_path = args.output
-                
-            output_file = pdf_to_word(pdf_files[0], output_file_path)
+            
+            # Pass page range to pdf_to_word function
+            output_file = pdf_to_word(pdf_files[0], output_file_path, 
+                                     start_page=args.start_page, 
+                                     end_page=args.end_page)
             print(f"✅ Successfully converted to: {output_file}")
             return 0
         else:
